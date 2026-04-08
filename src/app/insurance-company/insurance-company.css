@@ -1,0 +1,342 @@
+.company-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.section-divider {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+  margin: 3rem 0;
+}
+
+/* =========================================
+   PORTFOLIO SECTION (Active Policies)
+   ========================================= */
+.portfolio-section {
+  animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.portfolio-card {
+  background: linear-gradient(135deg, #2e4359 0%, #192a3b 100%);
+  color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add a cool glassmorphism pattern in background */
+.portfolio-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+.status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.status-badge {
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.active-status {
+  background-color: rgba(76, 175, 80, 0.2);
+  color: #81c784;
+  border: 1px solid #4caf50;
+}
+
+.policy-no {
+  font-family: monospace;
+  color: #90a4ae;
+  background: rgba(0,0,0,0.2);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.portfolio-card h3 {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.3rem;
+  color: #fff;
+}
+
+.policy-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  background: rgba(255,255,255,0.05);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.meta-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.meta-item .label {
+  color: #b0bec5;
+}
+
+.meta-item .value {
+  font-weight: 500;
+}
+
+.date-issued {
+  color: #81d4fa;
+}
+
+/* =========================================
+   EXISTING MARKETPLACE STYLES
+   ========================================= */
+
+.success-banner {
+  background-color: #e8f5e9;
+  border: 1px solid #c8e6c9;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.success-icon {
+  background-color: #4caf50;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.success-banner h3 {
+  margin: 0 0 0.25rem 0;
+  color: #2e7d32;
+}
+
+.success-banner p {
+  margin: 0;
+  color: #1b5e20;
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.plan-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.plan-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+  border-color: #e0e0e0;
+}
+
+.plan-card.selected {
+  border-color: #1976d2;
+  background-color: #f5f9ff;
+}
+
+.plan-header {
+  margin-bottom: 1.5rem;
+}
+
+.plan-type {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.plan-header h3 {
+  margin: 1rem 0 0 0;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.plan-details {
+  flex-grow: 1;
+  margin-bottom: 1.5rem;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+  color: #555;
+  border-bottom: 1px dashed #eee;
+  padding-bottom: 0.5rem;
+}
+
+.premium {
+  color: #1976d2;
+  font-size: 1.1rem;
+}
+
+.select-btn {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #1976d2;
+  background: transparent;
+  color: #1976d2;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.plan-card.selected .select-btn {
+  background: #1976d2;
+  color: white;
+}
+
+.purchase-section {
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.form-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-top: 5px solid #1976d2;
+}
+
+.form-card h3 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+  color: #333;
+}
+
+.highlight {
+  color: #1976d2;
+}
+
+.reactive-form {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-control label {
+  font-weight: 500;
+  color: #333;
+}
+
+.form-control input {
+  padding: 0.85rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.form-control input:focus {
+  outline: none;
+  border-color: #1976d2;
+  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
+}
+
+.form-control input.ng-invalid.ng-touched {
+  border-color: #d32f2f;
+  background-color: #fff8f8;
+}
+
+.error-msg {
+  color: #d32f2f;
+  font-size: 0.85rem;
+  margin-top: -0.25rem;
+}
+
+.submit-btn {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 1rem;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: #43a047;
+}
+
+.submit-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}

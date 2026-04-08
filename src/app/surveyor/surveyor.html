@@ -1,1 +1,76 @@
-<p>surveyor works!</p>
+<div class="surveyor-container">
+  
+  <div class="header">
+    <h2>Surveyor Portal</h2>
+    <p class="subtitle">Evaluate and process new insurance claims.</p>
+  </div>
+
+  <!-- IF WE CAME HERE WITHOUT A POLICY IN THE URL -->
+  <div class="empty-state" *ngIf="!surveyingPolicy">
+    <h3>No active claim selected</h3>
+    <p>Please initiate a claim from the Insurer Dashboard.</p>
+    <a href="/insurer" class="btn-primary">Go to Dashboard</a>
+  </div>
+
+  <!-- IF WE CAME HERE WITH A VALID POLICY IN THE URL -->
+  <div class="survey-form-container" *ngIf="surveyingPolicy">
+    
+    <div class="policy-context">
+      <h3>Claim Setup for <span class="highlight">{{ surveyingPolicy.policyNumber }}</span></h3>
+      
+      <div class="context-grid">
+        <div class="context-item">
+          <small>Policy Holder</small>
+          <strong>{{ surveyingPolicy.policyHolderName }}</strong>
+        </div>
+        <div class="context-item">
+          <small>Plan Type</small>
+          <strong>{{ surveyingPolicy.planDetails.name }} ({{ surveyingPolicy.planDetails.type }})</strong>
+        </div>
+        <div class="context-item">
+          <small>Max Coverage</small>
+          <strong class="coverage">₹{{ surveyingPolicy.planDetails.coverageAmount | number }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Claim Success Message -->
+    <div class="success-banner" *ngIf="claimSubmitted">
+      <div class="success-icon">✓</div>
+      <div>
+        <h3>Survey Report Submitted!</h3>
+        <p>The report has been sent to IRDA for final approval.</p>
+      </div>
+    </div>
+
+    <!-- The Claim Reporting Form (Using a simple Template approach here for variety) -->
+    <div class="report-form" *ngIf="!claimSubmitted">
+      <h4>Initial Survey Report</h4>
+      
+      <div class="form-group">
+        <label>Date of Incident</label>
+        <input type="date" class="form-input">
+      </div>
+
+      <div class="form-group">
+        <label>Estimated Damage Amount (₹)</label>
+        <input type="number" #damageInput class="form-input" placeholder="e.g. 50000">
+      </div>
+
+      <div class="form-group">
+        <label>Surveyor Notes</label>
+        <textarea rows="4" class="form-input" placeholder="Describe the incident..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Upload Evidence (Photos)</label>
+        <input type="file" multiple class="form-input file-input">
+      </div>
+
+      <button class="btn-submit" (click)="submitSurveyReport(damageInput.value)">
+        Submit Report to IRDA
+      </button>
+    </div>
+
+  </div>
+</div>

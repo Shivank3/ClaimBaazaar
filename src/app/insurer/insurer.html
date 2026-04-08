@@ -1,1 +1,61 @@
-<p>insurer works!</p>
+<div class="insurer-container">
+  
+  <div class="dashboard-header">
+    <div>
+      <h2>Policyholder Dashboard</h2>
+      <p class="subtitle">Manage your active policies and file claims.</p>
+    </div>
+    
+    <!-- Demonstration of computed signals -->
+    <div class="coverage-summary">
+      <span class="label">Total Coverage</span>
+      <span class="amount">₹{{ totalCoverage() | number }}</span>
+    </div>
+  </div>
+
+  <div *ngIf="policies().length === 0" class="empty-state">
+    <p>You don't have any active policies yet.</p>
+    <a href="/insurance-company" class="btn-primary">Browse Plans</a>
+  </div>
+
+  <div class="portfolio-grid" *ngIf="policies().length > 0">
+    <div class="portfolio-card" *ngFor="let policy of policies()">
+      
+      <div class="status-header">
+        <span class="status-badge" [class.active-status]="policy.status === 'Active'">
+          {{ policy.status }}
+        </span>
+        <span class="policy-no">{{ policy.policyNumber }}</span>
+      </div>
+      
+      <h3>{{ policy.planDetails.name }}</h3>
+      
+      <div class="policy-meta">
+        <div class="meta-item">
+          <span class="label">Policy Holder</span>
+          <span class="value">{{ policy.policyHolderName }}</span>
+        </div>
+        <div class="meta-item">
+          <span class="label">Coverage</span>
+          <span class="value highlight">₹{{ policy.planDetails.coverageAmount | number }}</span>
+        </div>
+        <div class="meta-item">
+          <span class="label">Issued On</span>
+          <span class="value">{{ policy.issueDate | date:'mediumDate' }}</span>
+        </div>
+        <div class="meta-item">
+          <span class="label">Valid Until</span>
+          <span class="value date-expiry">{{ policy.expiryDate | date:'mediumDate' }}</span>
+        </div>
+      </div>
+
+      <!-- User Requirement: File a Claim Option -->
+      <div class="card-actions">
+        <button class="btn-claim" (click)="fileClaim(policy.policyNumber)">
+          File a Claim
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -8,6 +8,10 @@ export const routes: Routes = [
   { path: 'insurer', component: Insurer },
   { path: 'insurance-company', component: InsuranceCompany },
   { path: 'irda', component: Irda },
-  { path: 'surveyor', component: Surveyor },
+  
+  // INTERVIEW CONCEPT: Route Parameters
+  // We use the :policyNumber syntax to tell Angular this route expects a dynamic parameter
+  { path: 'surveyor/:policyNumber', component: Surveyor },
+  { path: 'surveyor', component: Surveyor }, // Fallback if navigated without a policy
   { path: '', redirectTo: '/insurer', pathMatch: 'full' }
 ];

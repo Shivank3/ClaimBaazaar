@@ -1,1 +1,85 @@
-<p>insurance-company works!</p>
+<div class="company-container">
+
+  <h2>Available Insurance Plans</h2>
+  <p class="subtitle">Select a plan to start your application.</p>
+
+  <!-- Success Message -->
+  <div class="success-banner" *ngIf="purchaseComplete()">
+    <div class="success-icon">✓</div>
+    <div>
+      <h3>Application Submitted Successfully!</h3>
+      <p>Your new policy is live. Go to the <strong>Insurer</strong> tab to view your active policies.</p>
+    </div>
+  </div>
+
+  <!-- Plans Grid -->
+  <div class="plans-grid">
+    <div 
+      class="plan-card" 
+      *ngFor="let plan of plans"
+      [class.selected]="selectedPlan()?.id === plan.id"
+      (click)="selectPlan(plan)">
+      
+      <div class="plan-header">
+        <span class="plan-type">{{ plan.type }}</span>
+        <h3>{{ plan.name }}</h3>
+      </div>
+      
+      <div class="plan-details">
+        <div class="detail-row">
+          <span>Coverage Amount:</span>
+          <strong>₹{{ plan.coverageAmount | number }}</strong>
+        </div>
+        <div class="detail-row">
+          <span>Annual Premium:</span>
+          <strong class="premium">₹{{ plan.premium | number }}</strong>
+        </div>
+      </div>
+      
+      <button class="select-btn">{{ selectedPlan()?.id === plan.id ? 'Selected' : 'Select Plan' }}</button>
+    </div>
+  </div>
+
+  <!-- REACTIVE FORM SECTION -->
+  <div class="purchase-section" *ngIf="selectedPlan() as plan">
+    <div class="form-card">
+      <h3>Complete Your Application for: <span class="highlight">{{ plan.name }}</span></h3>
+      
+      <form [formGroup]="purchaseForm" (ngSubmit)="onSubmit()" class="reactive-form">
+        
+        <div class="form-control">
+          <label for="fullName">Full Name</label>
+          <input id="fullName" type="text" formControlName="fullName" placeholder="Enter your full name (Policy Holder)">
+          <div class="error-msg" *ngIf="purchaseForm.get('fullName')?.invalid && purchaseForm.get('fullName')?.touched">
+            <small *ngIf="purchaseForm.get('fullName')?.errors?.['required']">Name is required.</small>
+            <small *ngIf="purchaseForm.get('fullName')?.errors?.['minlength']">Name must be at least 3 characters.</small>
+          </div>
+        </div>
+
+        <div class="form-control">
+          <label for="email">Email Address</label>
+          <input id="email" type="email" formControlName="email" placeholder="you@example.com">
+          <div class="error-msg" *ngIf="purchaseForm.get('email')?.invalid && purchaseForm.get('email')?.touched">
+            <small *ngIf="purchaseForm.get('email')?.errors?.['required']">Email is required.</small>
+            <small *ngIf="purchaseForm.get('email')?.errors?.['email']">Please enter a valid email.</small>
+          </div>
+        </div>
+
+        <div class="form-control">
+          <label for="phone">Phone Number</label>
+          <input id="phone" type="text" formControlName="phone" placeholder="10-digit mobile number">
+          <div class="error-msg" *ngIf="purchaseForm.get('phone')?.invalid && purchaseForm.get('phone')?.touched">
+            <small *ngIf="purchaseForm.get('phone')?.errors?.['required']">Phone number is required.</small>
+            <small *ngIf="purchaseForm.get('phone')?.errors?.['pattern']">Must be exactly 10 digits.</small>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn" [disabled]="purchaseForm.invalid">
+          Submit & Pay ₹{{ plan.premium | number }}
+        </button>
+      </form>
+      
+    </div>
+  </div>
+
+</div>
