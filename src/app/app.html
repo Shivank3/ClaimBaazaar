@@ -1,0 +1,17 @@
+<div class="app-container">
+  <header class="app-header">
+    <h1>{{ title() }}</h1>
+    <nav>
+      <ul>
+        <li><a routerLink="/insurer" routerLinkActive="active">Insurer</a></li>
+        <li><a routerLink="/insurance-company" routerLinkActive="active">Insurance Company</a></li>
+        <li><a routerLink="/irda" routerLinkActive="active">IRDA</a></li>
+        <li><a routerLink="/surveyor" routerLinkActive="active">Surveyor</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="app-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>
